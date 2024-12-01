@@ -3,7 +3,7 @@ import java.sql.*;
 
 public class occupancyhashmap {
 
-     public static final String USERNAME = "username";//"YourUsername";
+     public static final String USERNAME = "occupants";//"YourUsername";
      public static final String PASSWORD = "password";//"YourPassword";
      public static final String URL = "jdbc:postgresql://localhost:5432/my_databasename"; // name of database goes here
 
