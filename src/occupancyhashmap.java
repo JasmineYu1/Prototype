@@ -5,7 +5,7 @@ public class occupancyhashmap {
 
      public static final String USERNAME = "occupants";//"YourUsername";
      public static final String PASSWORD = "password";//"YourPassword";
-     public static final String URL = "jdbc:postgresql://localhost:5432/occupancy"; // name of database goes here
+     public static final String URL = "jdbc:postgresql://localhost:5432/occupancymapbase"; // name of database goes here
 
 
     public static void main(String[] args) {
@@ -14,11 +14,11 @@ public class occupancyhashmap {
 
     public static Map<String, Map<String, Integer>> hash() {
        Map <String,Map<String,Integer>> ocuppancyMap = new HashMap<>();
-       String sql = " "; // this is where we will put our string for the sql
+       String sql = ""; // this is where we will put our string for the sql
 
        try( Connection connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
             PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery(""); // add statement to get sql table and add on to here
+            ResultSet resultSet = statement.executeQuery(sql); // add statement to get sql table and add on to here
        ){
            while(true){
                // nested hashmap gets data rom the sh  cloud - which will be our SQL so we just make a hashmap and then calculate it ans use calculations to get what they need to doo
@@ -27,7 +27,8 @@ public class occupancyhashmap {
                String hour = resultSet.getString("time"); // this will be the hour for the outer layer
 
                //username as key for the inner layer
-               String username = resultSet.getString("username");
+               String username = resultSet.getString("user_id");
+               System.out.println(username);
                //present count as for the inner layer too
                int count = resultSet.getInt("count");
 
