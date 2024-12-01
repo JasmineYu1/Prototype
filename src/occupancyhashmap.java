@@ -5,7 +5,7 @@ public class occupancyhashmap {
 
      public static final String USERNAME = "occupants";//"YourUsername";
      public static final String PASSWORD = "password";//"YourPassword";
-     public static final String URL = "jdbc:postgresql://localhost:5432/my_databasename"; // name of database goes here
+     public static final String URL = "jdbc:postgresql://localhost:5432/occupancy"; // name of database goes here
 
 
     public static void main(String[] args) {
@@ -15,6 +15,7 @@ public class occupancyhashmap {
     public static Map<String, Map<String, Integer>> hash() {
        Map <String,Map<String,Integer>> ocuppancyMap = new HashMap<>();
        String sql = " "; // this is where we will put our string for the sql
+
        try( Connection connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery(""); // add statement to get sql table and add on to here
