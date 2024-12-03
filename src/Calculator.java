@@ -4,19 +4,20 @@ public class Calculator {
 
     private static final double K1 = 0.5; // Scale factor for the upper threshold
     private static final double K2 = 0.5; // Scale factor for the lower threshold
+    private static final int totalWeeks = 4;
 
     public Map<String, Map<String, Double>> calculateThresholds(
-                Map<String, Map<String, List<Integer>>> detailedOccupancyMap,
-                int totalWeeks
+                Map<String, Map<String, List<Integer>>> occupancyMap,
+
     ) {
         Map<String, Map<String, Double>> thresholds = new HashMap<>();
 
-        for (String dayHour : detailedOccupancyMap.keySet()) {
-            Map<String, List<Integer>> userCounts = detailedOccupancyMap.get(dayHour);
-            Map<String, Double> hourThresholds = new HashMap<>();
+        for (String dayHour : occupancyMap.keySet()) {
+            Map<String, List<Integer>> presentMap = occupancyMap.get(dayHour);
+            Map<String, Double> userThresholds = new HashMap<>();
 
             for (String user : userCounts.keySet()) {
-                List<Integer> counts = userCounts.get(user);
+                List<Integer> counts = userCounts.get(username);
 
                     // Calculate mean (A1 or A2)
                 double mean = counts.stream().mapToDouble(Integer::doubleValue).sum() / (totalWeeks * 7 * 14);
@@ -32,8 +33,8 @@ public class Calculator {
                 double lowerThreshold = Math.max(0.0, mean - (K2 * stdDev));
 
                     // Store thresholds
-                hourThresholds.put(user + "_upper", upperThreshold);
-                hourThresholds.put(user + "_lower", lowerThreshold);
+                userThresholds.put(username + "_upper", upperThreshold);
+                userThresholds.put(username + "_lower", lowerThreshold);
             }
 
             thresholds.put(dayHour, hourThresholds);
