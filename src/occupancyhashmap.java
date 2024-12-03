@@ -27,7 +27,7 @@ public class occupancyhashmap {
                // inner layer - each users’ name will be used as keys to identify the presence counts for the particular individual from 8 a.m. to 22 p.m
                String day = resultSet.getString("day_id");
                String hour = resultSet.getString("hour_id"); // this will be the hour for the outer layer
-               String dayHour = day + "-" + hour;
+               String dayHour = day + "_" + hour;
                String username = resultSet.getString("user_id");
                //present count as for the inner layer too
                int count = resultSet.getInt("count");
@@ -38,7 +38,7 @@ public class occupancyhashmap {
               presentMap.get(username).add(count);
 
               // presentMap.put(username, presentMap.get(username) + 1);
-               //closing connection after we have gotten what we have collected our data
+               // closing connection after we have gotten what we have collected our data
 
 
                connection.close();
