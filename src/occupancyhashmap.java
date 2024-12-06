@@ -57,17 +57,9 @@ public class occupancyhashmap {
 
 
 }
+//Structure of database (in SSH Cloud):
+//Columns: day_id, hour, user
 
-// 1. change from storing integers of presence counts to storing a list of presence data
-// 2. having day and hour ids separately, then linking day_id and hour_id using '_',
-// naming it as the outer layer of hashmap
-// 3. update this part accordingly:
-//              ocuppancyMap.putIfAbsent(hour, new HashMap<>());
-//              Map<String, Integer> presentMap = ocuppancyMap.get(hour);
-//              presentMap.putIfAbsent(username, 0);
-//              presentMap.put(username, presentMap.get(username)+1);
-//
-//               //closing connection after we have gotten what we have collected our data
-//               RowSetFactory factory = RowSetProvider.newFactory();  // adding rowset for jdbc
-//               CachedRowSet rowSet = factory.createCachedRowSet();
-//               rowSet.populate(resultSet);
+// Structure of Hashmap:
+//dayHour outer key, in the form of day_hour, specifying each hourly time slot each day in the week
+//username inner key, same as user_id, specifying the

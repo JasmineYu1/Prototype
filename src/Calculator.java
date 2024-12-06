@@ -4,7 +4,7 @@ public class Calculator {
 
     private static final double K1 = 0.5; // Scale factor for the upper threshold
     private static final double K2 = 0.5; // Scale factor for the lower threshold
-    private static final int totalWeeks = 4;
+    private static final int totalWeeks = 4; //hardcoding totalWeeks
 
     public Map<String, Map<String, Double>> calculateThresholds(
                 Map<String, Map<String, List<Integer>>> occupancyMap,
@@ -21,6 +21,12 @@ public class Calculator {
 
                     // Calculate mean (A1 or A2)
                 double mean = counts.stream().mapToDouble(Integer::doubleValue).sum() / (totalWeeks * 7 * 14);
+                    //Calculate A1
+                double mean1 = counts.stream().mapToDouble(Integer::doubleValue).sum() / totalWeeks;
+                    //Calculate A2
+                double mean2 = counts.stream().mapToDouble(Integer::doubleValue).sum() / totalWeeks;
+                    //Calculate S1
+                    //Calculate S2
 
                     // Calculate standard deviation (S1 or S2)
                 double variance = counts.stream()

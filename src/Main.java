@@ -15,5 +15,7 @@ public class Main {
         //code to declare new instance & perform calculations on data
 //        Calculator calculator = new Calculator();
 //        calculator.doCalculations(data);
+        //calculate B1
+        //calculate B2
     }
 }
