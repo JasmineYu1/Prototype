@@ -22,24 +22,20 @@ public class occupancyHashmap {
                //outer layer - using each string combination of day of week and hour in 24 hours system as the key
                // inner layer - each users’ name will be used as keys to identify the presence counts for the particular individual from 8 a.m. to 22 p.m
 
-               String day,hour,dayHour,username;
+               String day,hour,date,username;
                day = resultSet.getString("day_id");
                hour = resultSet.getString("hour_id"); // this will be the hour for the outer layer
-               dayHour = day + "-" + hour;
+               date = day + "-" + hour;
                username = resultSet.getString("user_id");
-
                //present count as for the inner layer too
                int count = resultSet.getInt("count");
 
-              occupancyMap.putIfAbsent(dayHour, new HashMap<>()); // adds a key pair value to the map if the key is not there
-              Map<String, List<Integer>> presentMap = occupancyMap.get(dayHour); // inner loop
+              occupancyMap.putIfAbsent(date, new HashMap<>()); // adds a key pair value to the map if the key is not there
+              Map<String, List<Integer>> presentMap = occupancyMap.get(date); // inner loop
               presentMap.putIfAbsent(username,new ArrayList<>());
               presentMap.get(username).add(count);
-
-              // presentMap.put(username, presentMap.get(username) + 1);
                // closing connection after we have gotten what we have collected our data
 
-//lll
                connection.close();
                statement.close();
                resultSet.close();
