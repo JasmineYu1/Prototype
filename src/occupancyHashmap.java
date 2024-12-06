@@ -21,11 +21,14 @@ public class occupancyHashmap {
                // nested hashmap gets data rom the sh  cloud - which will be our SQL so we just make a hashmap and then calculate it ans use calculations to get what they need to doo
                //outer layer - using each string combination of day of week and hour in 24 hours system as the key
                // inner layer - each users’ name will be used as keys to identify the presence counts for the particular individual from 8 a.m. to 22 p.m
+<<<<<<< HEAD:src/occupancyHashmap.java
                String day,hour,dayHour,username;
                day = resultSet.getString("day_id");
                hour = resultSet.getString("hour_id"); // this will be the hour for the outer layer
                dayHour = day + "-" + hour;
                username = resultSet.getString("user_id");
+=======
+>>>>>>> 5aaf6921d3f85b8b510d3ff6ec06a4d16cfe503a:src/occupancyhashmap.java
                //present count as for the inner layer too
                int count = resultSet.getInt("count");
 
@@ -35,7 +38,7 @@ public class occupancyHashmap {
               presentMap.get(username).add(count);
 
               // presentMap.put(username, presentMap.get(username) + 1);
-               //closing connection after we have gotten what we have collected our data
+               // closing connection after we have gotten what we have collected our data
 
 
                connection.close();
