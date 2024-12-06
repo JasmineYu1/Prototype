@@ -39,7 +39,7 @@ public class occupancyHashmap {
               // presentMap.put(username, presentMap.get(username) + 1);
                // closing connection after we have gotten what we have collected our data
 
-
+//lll
                connection.close();
                statement.close();
                resultSet.close();
