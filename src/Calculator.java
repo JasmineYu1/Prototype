@@ -22,7 +22,7 @@ public class Calculator {
                     // Calculate mean (A1 or A2)
                 double mean = counts.stream().mapToDouble(Integer::doubleValue).sum() / (totalWeeks * 7 * 14);
                     //Calculate A1
-                //
+                //add all
                 double mean1 = counts.stream().mapToDouble(Integer::doubleValue).sum() / totalWeeks;
                     //Calculate A2
                 double mean2 = counts.stream().mapToDouble(Integer::doubleValue).sum() / totalWeeks;
