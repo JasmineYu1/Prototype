@@ -16,6 +16,7 @@ public class occupancyHashmap {
              ResultSet resultSet = statement.executeQuery(); // add statement to get sql table and add on to here
         )
 
+<<<<<<< HEAD
         {
             while(true){
                 // nested hashmap gets data rom the sh  cloud - which will be our SQL so we just make a hashmap and then calculate it ans use calculations to get what they need to doo
@@ -31,6 +32,22 @@ public class occupancyHashmap {
 >>>>>>> 5aaf6921d3f85b8b510d3ff6ec06a4d16cfe503a:src/occupancyhashmap.java
                 //present count as for the inner layer too
                 int count = resultSet.getInt("count");
+=======
+       {
+           while(true){
+               // nested hashmap gets data rom the sh  cloud - which will be our SQL so we just make a hashmap and then calculate it ans use calculations to get what they need to doo
+               //outer layer - using each string combination of day of week and hour in 24 hours system as the key
+               // inner layer - each users’ name will be used as keys to identify the presence counts for the particular individual from 8 a.m. to 22 p.m
+
+               String day,hour,dayHour,username;
+               day = resultSet.getString("day_id");
+               hour = resultSet.getString("hour_id"); // this will be the hour for the outer layer
+               dayHour = day + "-" + hour;
+               username = resultSet.getString("user_id");
+
+               //present count as for the inner layer too
+               int count = resultSet.getInt("count");
+>>>>>>> 09ae19bae2b56bb0316154f26176e4473a19f52a
 
                 occupancyMap.putIfAbsent(dayHour, new HashMap<>()); // adds a key pair value to the map if the key is not there
                 Map<String, List<Integer>> presentMap = occupancyMap.get(dayHour); // inner loop
@@ -40,10 +57,17 @@ public class occupancyHashmap {
                 // presentMap.put(username, presentMap.get(username) + 1);
                 // closing connection after we have gotten what we have collected our data
 
+<<<<<<< HEAD
 
                 connection.close();
                 statement.close();
                 resultSet.close();
+=======
+//lll
+               connection.close();
+               statement.close();
+               resultSet.close();
+>>>>>>> 09ae19bae2b56bb0316154f26176e4473a19f52a
 
                 return occupancyMap;
             }
