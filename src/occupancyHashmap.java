@@ -3,16 +3,16 @@ import java.sql.*;
 
 public class occupancyHashmap {
 
-     public static final String USER = "occupants";//"YourUsername";
-     public static final String PASS = "password";//"YourPassword";
+     public static final String USERNAME = "occupants";//"YourUsername";
+     public static final String PASSWORD = "password";//"YourPassword";
      public static final String URL = "jdbc:postgresql://localhost:5432/occupancymapbase"; // name of database goes here
 
 
     public static Map<String, Map<String, List<Integer>>> occupantMap() {
-       Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
-       String sql = "SELECT  * FROM occupancy"; // this is where we will put our string for the sql , will change sepending on how database looks like
+        Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
+        String sql = "SELECT  * FROM occupancy"; // this is where we will put our string for the sql , will change sepending on how database looks like
 
-       try( Connection connection = DriverManager.getConnection(URL,USER,PASS);
+       try( Connection connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery(); // add statement to get sql table and add on to here
        )
@@ -37,19 +37,35 @@ public class occupancyHashmap {
               presentMap.get(username).add(count);
                // closing connection after we have gotten what we have collected our data
 
+>>>>>>> 609432c231a092fd1baa5716c1c5ba37a1db71e0
                connection.close();
                statement.close();
                resultSet.close();
+>>>>>>> 09ae19bae2b56bb0316154f26176e4473a19f52a
 
-               return occupancyMap;
-           }
+                return occupancyMap;
+            }
 
-       } catch (SQLException e) {
-           throw new RuntimeException(e);
-       }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
 
 
 }
+
+// 1. change from storing integers of presence counts to storing a list of presence data
+// 2. having day and hour ids separately, then linking day_id and hour_id using '_',
+// naming it as the outer layer of hashmap
+// 3. update this part accordingly:
+//              ocuppancyMap.putIfAbsent(hour, new HashMap<>());
+//              Map<String, Integer> presentMap = ocuppancyMap.get(hour);
+//              presentMap.putIfAbsent(username, 0);
+//              presentMap.put(username, presentMap.get(username)+1);
+//
+//               //closing connection after we have gotten what we have collected our data
+//               RowSetFactory factory = RowSetProvider.newFactory();  // adding rowset for jdbc
+//               CachedRowSet rowSet = factory.createCachedRowSet();
+//               rowSet.populate(resultSet);
