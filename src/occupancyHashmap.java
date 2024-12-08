@@ -37,11 +37,10 @@ public class occupancyHashmap {
               presentMap.get(username).add(count);
                // closing connection after we have gotten what we have collected our data
 
->>>>>>> 609432c231a092fd1baa5716c1c5ba37a1db71e0
                connection.close();
                statement.close();
                resultSet.close();
->>>>>>> 09ae19bae2b56bb0316154f26176e4473a19f52a
+
 
                 return occupancyMap;
             }
