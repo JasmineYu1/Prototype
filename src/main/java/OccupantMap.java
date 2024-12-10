@@ -14,13 +14,13 @@ public class OccupantMap {
     private static final double K2 = 0.5; // Scale factor for the lower threshold
     public static final int totalWeeks = 4; //hardcoding totalWeeks
 
-
-
     public static Map<String, Map<String, List<Integer>>> occupantMap() {
         //Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
         String sql = "SELECT  * FROM occupancy"; // this is where we will put our string for the sql , will change sepending on how database looks like
 
-        try(Connection connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+        try(
+
+           Connection connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery(); // add statement to get sql table and add on to here
         )
