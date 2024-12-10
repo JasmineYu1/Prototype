@@ -23,7 +23,7 @@ public class Calculator {
             //stdDevA2: subtract meanA2 from each data points of all users, square them and sum it, before dividing by 2 * totalWeeks *7 * 14 and square rooting everything
             double totalSum = 0;
             int totalCount = 0;
-            for (List<Integer> counts : count.values()) {
+            for (List<Integer> counts : occupancyHashmap.count.values()) {
                 totalSum += counts.stream().mapToDouble(Integer::doubleValue).sum();
                 totalCount += counts.size();
             }
@@ -39,7 +39,7 @@ public class Calculator {
 
 
             // Calculate thresholds for each user
-            for (String username : userCounts.keySet()) {
+            for (String username : count.keySet()) {
                 List<Integer> counts = count.get(username);
 
                 // Calculate A1 and S1 (values for the specific user)
