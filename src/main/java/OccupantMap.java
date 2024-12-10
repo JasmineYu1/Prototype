@@ -1,8 +1,7 @@
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+
 
 public class OccupantMap {
 
@@ -16,7 +15,7 @@ public class OccupantMap {
 
     public static Map<String, Map<String, List<Integer>>> occupantMap() {
         //Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
-        String sql = "SELECT  * FROM occupancy"; // this is where we will put our string for the sql , will change sepending on how database looks like
+        String sql = "SELECT  * FROM resident_presence"; // this is where we will put our string for the sql , will change sepending on how database looks like
 
         try(
 
