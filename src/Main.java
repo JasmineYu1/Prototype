@@ -1,6 +1,8 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import java.util.Map;
+import java.util.*;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -30,7 +32,7 @@ public class Main {
 
         // Create an instance of Calculator and perform calculations
         Calculator calculator = new Calculator();
-        Map<String, Map<String, Double>> thresholds = calculator.calculateThresholds(occupancyMap);
+        Map<String, Map<String, Double>> thresholds = calculator.calculateThresholds();
 
         // Analyze the data using the calculated thresholds
         for (String dayHour : occupancyMap.keySet()) {
@@ -40,7 +42,7 @@ public class Main {
             for (String username : userCounts.keySet()) {
                 List<Integer> counts = userCounts.get(username);
 
-                double meanPresence = counts.stream().mapToDouble(Integer::doubleValue).sum() / (totalWeeks * 7 * 14);
+                double meanPresence = counts.stream().mapToDouble(Integer::doubleValue).sum() / (Calculator.totalWeeks * 7 * 14);
 
                 // Compare meanPresence to thresholds
                 double upperThreshold = userThresholds.get(username + "_upper");
