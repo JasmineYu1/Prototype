@@ -4,13 +4,15 @@ public class Calculator {
 
     private static final double K1 = 0.5; // Scale factor for the upper threshold
     private static final double K2 = 0.5; // Scale factor for the lower threshold
-    private static final int totalWeeks = 4; //hardcoding totalWeeks
+    public static final int totalWeeks = 4; //hardcoding totalWeeks
 
     public Map<String, Map<String, Double>> calculateThresholds(
-                Map<String, Map<String, List<Integer>>> occupancyMap,
 
-    ) {
+    )
+    {
         Map<String, Map<String, Double>> thresholds = new HashMap<>();
+         occupancyHashmap occupancyHashmap = new occupancyHashmap();
+         Map <String,Map<String,List<Integer>>> occupancyMap = occupancyHashmap.occupantMap();
 
         for (String dayHour : occupancyMap.keySet()) {
             Map<String, List<Integer>> presentMap = occupancyMap.get(dayHour);
