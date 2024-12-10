@@ -18,10 +18,9 @@ public class OccupantMap {
         String sql = "SELECT  * FROM resident_presence"; // this is where we will put our string for the sql , will change sepending on how database looks like
 
         try(
-
-           Connection connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+            Connection connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
             PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery(); // add statement to get sql table and add on to here
+            ResultSet resultSet = statement.executeQuery(sql) // add statement to get sql table and add on to here
         )
 
         {
@@ -52,7 +51,7 @@ public class OccupantMap {
                 return occupancyMap;
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException e ) {
             throw new RuntimeException(e);
         }
 

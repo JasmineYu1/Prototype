@@ -26,7 +26,7 @@ public class Main {
 
 
         // Create an instance of occupancyHashmap and fetch data
-        occupancyHashmap hashmapGenerator = new occupancyHashmap();
+        OccupantMap hashmapGenerator = new OccupantMap();
         Map<String, Map<String, List<Integer>>> occupancyMap = hashmapGenerator.occupantMap();
 
         // Create an instance of Calculator and perform calculations
