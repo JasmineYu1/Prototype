@@ -3,9 +3,9 @@ import java.sql.*;
 
 public class occupancyHashmap {
 
-     public static final String USERNAME = "occupants";//"YourUsername";
-     public static final String PASSWORD = "password";//"YourPassword";
-     public static final String URL = "jdbc:postgresql://localhost:5432/occupancymapbase"; // name of database goes here
+     public static final String USERNAME = "postgres";//"YourUsername";
+     public static final String PASSWORD = "Lime8629!";//"YourPassword";
+     public static final String URL = "jdbc:postgresql://localhost:5433/ssh_database"; // name of database goes here
       public static Map <String,Map<String,List<Integer>>> occupancyMap;
 
 
