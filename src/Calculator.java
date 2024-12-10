@@ -12,7 +12,7 @@ public class Calculator {
     {
         Map<String, Map<String, Double>> thresholds = new HashMap<>();
          occupancyHashmap occupancyHashmap = new occupancyHashmap();
-         Map <String,Map<String,List<Integer>>> occupancyMap = occupancyHashmap.occupantMap();
+         Map <String,Map<String,List<Integer>>> occupancyMap = occupancyHashmap.occupancyMap;
 
         for (String dayHour : occupancyMap.keySet()) {
             Map<String, List<Integer>> presentMap = occupancyMap.get(dayHour);

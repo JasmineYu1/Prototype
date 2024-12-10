@@ -6,10 +6,10 @@ public class occupancyHashmap {
      public static final String USERNAME = "occupants";//"YourUsername";
      public static final String PASSWORD = "password";//"YourPassword";
      public static final String URL = "jdbc:postgresql://localhost:5432/occupancymapbase"; // name of database goes here
-
+     public static final Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
 
     public static Map<String, Map<String, List<Integer>>> occupantMap() {
-        Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
+        //Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
         String sql = "SELECT  * FROM occupancy"; // this is where we will put our string for the sql , will change sepending on how database looks like
 
        try( Connection connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
