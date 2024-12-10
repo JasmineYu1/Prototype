@@ -31,8 +31,10 @@ public class Main {
         Map<String, Map<String, List<Integer>>> occupancyMap = hashmapGenerator.occupantMap();
 
         // Create an instance of Calculator and perform calculations
-        Calculator calculator = new Calculator();
-        Map<String, Map<String, Double>> thresholds = calculator.calculateThresholds();
+        OccupantMap occupantMap = new OccupantMap();
+        Map<String, Map<String, Double>> thresholds = occupantMap.calculateThresholds();
+
+                //calculateThresholds();
 
         // Analyze the data using the calculated thresholds
         for (String dayHour : occupancyMap.keySet()) {
