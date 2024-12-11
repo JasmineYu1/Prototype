@@ -24,7 +24,7 @@ public class OccupantMap {
         )
 
         {
-            while(true){
+            while(resultSet.next()){
                 // nested hashmap gets data rom the sh  cloud - which will be our SQL so we just make a hashmap and then calculate it ans use calculations to get what they need to doo
                 //outer layer - using each string combination of day of week and hour in 24 hours system as the key
                 // inner layer - each users’ name will be used as keys to identify the presence counts for the particular individual from 8 a.m. to 22 p.m
@@ -54,7 +54,7 @@ public class OccupantMap {
         } catch (SQLException e ) {
             throw new RuntimeException(e);
         }
-
+        return occupancyMap;
     }
 
 
