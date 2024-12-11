@@ -5,9 +5,9 @@ import java.util.*;
 
 public class OccupantMap {
 
-    public static final String USERNAME = "postgres";//"YourUsername";
-    public static final String PASSWORD = "Lime8629!";//"YourPassword";
-    public static final String URL = "jdbc:postgresql://localhost:5433/ssh_database";
+    public static String USERNAME = "postgres";//"YourUsername";
+    public static String PASSWORD = "Lime8629!";//"YourPassword";
+    public static String URL = "jdbc:postgresql://localhost:5433/ssh_database";
     public static Map <String,Map<String,List<Integer>>> occupancyMap;
     private static final double K1 = 0.5; // Scale factor for the upper threshold
     private static final double K2 = 0.5; // Scale factor for the lower threshold
