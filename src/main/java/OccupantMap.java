@@ -9,14 +9,14 @@ public class OccupantMap {
     public static String PASSWORD = "Lime8629!";//"YourPassword";
     public static String URL = "jdbc:postgresql://localhost:5432/residents";
    // public static String URL = "jdbc:postgresql://localhost:5432/ssh_database_schema.sql";
-    public static Map <String,Map<String,List<Integer>>> occupancyMap;
+    public static Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
     private static final double K1 = 0.5; // Scale factor for the upper threshold
     private static final double K2 = 0.5; // Scale factor for the lower threshold
     public static final int totalWeeks = 4; //hardcoding totalWeeks
 
     public static Map<String, Map<String, List<Integer>>> occupantMap() {
         //Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
-        String sql = "SELECT  * FROM resident_presence"; // this is where we will put our string for the sql , will change sepending on how database looks like
+        String sql = "SELECT day, hour , user_id , count   FROM  resident_presence "; // this is where we will put our string for the sql , will change sepending on how database looks like
 
         try(
             Connection connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
@@ -44,17 +44,20 @@ public class OccupantMap {
                 presentMap.get(username).add(count);
                 // closing connection after we have gotten what we have collected our data
 
+
                 connection.close();
                 statement.close();
                 resultSet.close();
 
+
+                return occupancyMap;
 
             }
 
         } catch (SQLException e ) {
             throw new RuntimeException(e);
         }
-        return occupancyMap;
+        return occupantMap();
     }
 
 
