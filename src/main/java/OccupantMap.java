@@ -15,7 +15,6 @@ public class OccupantMap {
 
 
     public static  Map<String, Map<String, List<Integer>>> occupantMap() {
-        //Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
         String sql = "SELECT  *  FROM  resident_presence ";
 
         try(
@@ -34,13 +33,12 @@ public class OccupantMap {
                 date = day + "_" + hour;
                 username = resultSet.getString("user_id");
                 int count = resultSet.getInt("count");
+
                 occupancyMap = new HashMap<>();
                 Map<String, List<Integer>> presentMap = new HashMap<>();
                 presentMap.putIfAbsent(username,new ArrayList<>());
                 presentMap.get(username).add(count);
                 occupancyMap.putIfAbsent(date,presentMap);
-
-
                 connection.close();
 
             }
@@ -58,7 +56,7 @@ public class OccupantMap {
 
    public static Map<String, Map<String, Double>> calculateThresholds() {
         Map<String, Map<String, Double>> thresholds = new HashMap<>();
-        Map <String,Map<String,List<Integer>>> occupancyMap = occupantMap();
+        //Map <String,Map<String,List<Integer>>> Map = occupantMap();
 
         for (String dayHour : occupancyMap.keySet()) {
             Map<String, List<Integer>> presentMap = occupancyMap.get(dayHour);

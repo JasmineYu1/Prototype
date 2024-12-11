@@ -1,28 +1,4 @@
-Key: mon_8-9, Values: {A=[0]}
-Key: mon_8-9, Values: {B=[1]}
-Key: mon_9-10, Values: {A=[0]}
-Key: mon_9-10, Values: {B=[1]}
- Key: mon_10-11, Values: {A=[0]}
- Key: mon_10-11, Values: {B=[0]}
- Key: mon_11-12, Values: {A=[0]}
- Key: mon_11-12, Values: {B=[0]}
- Key: mon_12-13, Values: {A=[0]}
- Key: mon_12-13, Values: {B=[0]}
- Key: mon_13-14, Values: {A=[1]}
- Key: mon_13-14, Values: {B=[1]}
- Key: mon_14-15, Values: {A=[1]}
- Key: mon_14-15, Values: {B=[1]}
- Key: mon_15-16, Values: {A=[1]}
- Key: mon_15-16, Values: {B=[1]}
- Key: mon_16-17, Values: {A=[0]}
- Key: mon_16-17, Values: {B=[1]}
- Key: mon_17-18, Values: {A=[0]}
- Key: mon_17-18, Values: {B=[1]}
- Key: mon_18-19, Values: {A=[1]}
- Key: mon_18-19, Values: {B=[0]}
- Key: mon_19-20, Values: {A=[1]}
- Key: mon_19-20, Values: {B=[1]}
- Key: mon_20-21, Values: {A=[1]}
- Key: mon_20-21, Values: {B=[0]}
- Key: mon_21-22, Values: {A=[0]}
- Key: mon_21-22, Values: {B=[1]}
+
+[1, 2, 3]
+
+[4, 5, 6]

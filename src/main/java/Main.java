@@ -24,9 +24,11 @@ public class Main {
                 double lowerThreshold = userThresholds.get(username + "_lower");
 
                 if (meanPresence > upperThreshold) {
-                    System.out.printf("User %s can do housework at %s!\n", username, dayHour);
+                    System.out.println("User " +username+ " can do housework at " + dayHour);
                 } else if (meanPresence < lowerThreshold) {
-                    System.out.printf("User %s can use shared facilities at %s!\n", username, dayHour);
+                    System.out.println("User" + username + "can use shared facilities at " + dayHour);
+                } else {
+                    System.out.println("no suggestions give at " + dayHour);
                 }
             }
         }
