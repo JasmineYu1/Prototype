@@ -26,10 +26,12 @@ public class Main {
 
 
         // Create an instance of occupancyHashmap and fetch data
-        OccupantMap hashmapGenerator = new OccupantMap();
-        Map<String, Map<String, List<Integer>>> occupancyMap = hashmapGenerator.occupantMap();
+       // OccupantMap hashmapGenerator = new OccupantMap();
+        final Map<String, Map<String, List<Integer>>> hashmapGenerator = OccupantMap.occupancyMap;
+        Map<String, Map<String, List<Integer>>> occupancyMap = hashmapGenerator;
 
         // Create an instance of Calculator and perform calculations
+
         OccupantMap occupantMap = new OccupantMap();
         Map<String, Map<String, Double>> thresholds = occupantMap.calculateThresholds();
 
