@@ -16,7 +16,7 @@ public class OccupantMap {
 
     public static Map<String, Map<String, List<Integer>>> occupantMap() {
         //Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
-        String sql = "SELECT day, hour , user_id , count   FROM  resident_presence "; // this is where we will put our string for the sql , will change sepending on how database looks like
+        String sql = "SELECT  *  FROM  resident_presence "; // this is where we will put our string for the sql , will change sepending on how database looks like
 
         try(
             Connection connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);

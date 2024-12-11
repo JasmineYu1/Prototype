@@ -10,16 +10,16 @@ class OccupantMapTest {
         // Create a simplified test scenario with mock data
         OccupantMap.USERNAME = "postgres"; // Adjust username for test DB if needed
         OccupantMap.PASSWORD = "Lime8629!";
-        OccupantMap.URL = "jdbc:postgresql://localhost:5433/ssh_database"; // Update to point to a test database
+        OccupantMap.URL = "jdbc:postgresql://localhost:5432/residents"; // Update to point to a test database
 
         // Run the method
         Map<String, Map<String, List<Integer>>> result = OccupantMap.occupantMap();
 
         // Perform basic checks
         assertNotNull(result, "Result should not be null");
-        assertTrue(result.containsKey("Mon_8"), "Map should contain data for Mon-8");
-        assertTrue(result.get("Mon_8").containsKey("A"), "User 'A' should have data for Mon-8");
-        assertEquals(1, result.get("Mon_8").get("A").size(), "User 'A' should have one entry for Mon-8");
+        assertTrue(result.containsKey("Mon_8-9"), "Map should contain data for Mon-8");
+        assertTrue(result.get("Mon_8-9").containsKey("A"), "User 'A' should have data for Mon-8");
+        assertEquals(1, result.get("Mon_8-9").get("A").size(), "User 'A' should have one entry for Mon-8");
     }
 
     @Test
