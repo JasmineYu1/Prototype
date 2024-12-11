@@ -8,18 +8,18 @@ class OccupantMapTest {
     @Test
     void testOccupantMap() {
         // Create a simplified test scenario with mock data
-        OccupantMap.USERNAME = "test_user"; // Adjust username for test DB if needed
-        OccupantMap.PASSWORD = "test_password";
-        OccupantMap.URL = "jdbc:postgresql://localhost:5433/test_db"; // Update to point to a test database
+        OccupantMap.USERNAME = "postgres"; // Adjust username for test DB if needed
+        OccupantMap.PASSWORD = "Lime8629!";
+        OccupantMap.URL = "jdbc:postgresql://localhost:5433/ssh_database"; // Update to point to a test database
 
         // Run the method
         Map<String, Map<String, List<Integer>>> result = OccupantMap.occupantMap();
 
         // Perform basic checks
         assertNotNull(result, "Result should not be null");
-        assertTrue(result.containsKey("Mon-8"), "Map should contain data for Mon-8");
-        assertTrue(result.get("Mon-8").containsKey("A"), "User 'A' should have data for Mon-8");
-        assertEquals(1, result.get("Mon-8").get("A").size(), "User 'A' should have one entry for Mon-8");
+        assertTrue(result.containsKey("Mon_8"), "Map should contain data for Mon-8");
+        assertTrue(result.get("Mon_8").containsKey("A"), "User 'A' should have data for Mon-8");
+        assertEquals(1, result.get("Mon_8").get("A").size(), "User 'A' should have one entry for Mon-8");
     }
 
     @Test
@@ -29,7 +29,7 @@ class OccupantMapTest {
         Map<String, List<Integer>> userCounts = new HashMap<>();
         userCounts.put("A", Arrays.asList(1, 2, 3));
         userCounts.put("B", Arrays.asList(4, 5, 6));
-        mockMap.put("Mon-8", userCounts);
+        mockMap.put("Mon_8", userCounts);
 
         // Inject mock data
         OccupantMap.occupancyMap = mockMap;
@@ -39,9 +39,9 @@ class OccupantMapTest {
 
         // Perform basic checks
         assertNotNull(thresholds, "Thresholds should not be null");
-        assertTrue(thresholds.containsKey("Mon-8"), "Thresholds should contain data for Mon-8");
-        assertTrue(thresholds.get("Mon-8").containsKey("A_upper"), "Thresholds should include upper threshold for user 'A'");
-        assertTrue(thresholds.get("Mon-8").containsKey("A_lower"), "Thresholds should include lower threshold for user 'A'");
+        assertTrue(thresholds.containsKey("Mon_8"), "Thresholds should contain data for Mon-8");
+        assertTrue(thresholds.get("Mon_8").containsKey("A_upper"), "Thresholds should include upper threshold for user 'A'");
+        assertTrue(thresholds.get("Mon_8").containsKey("A_lower"), "Thresholds should include lower threshold for user 'A'");
     }
 }
 
