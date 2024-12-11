@@ -17,9 +17,9 @@ class OccupantMapTest {
 
         // Perform basic checks
         assertNotNull(result, "Result should not be null");
-        assertTrue(result.containsKey("Mon_8-9"), "Map should contain data for Mon-8");
-        assertTrue(result.get("Mon_8-9").containsKey("A"), "User 'A' should have data for Mon-8");
-        assertEquals(1, result.get("Mon_8-9").get("A").size(), "User 'A' should have one entry for Mon-8");
+        assertTrue(result.containsKey("mon_21-22"), "Map should contain data for Mon-8");
+        assertTrue(result.get("mon_21-22").containsKey("B"), "User 'A' should have data for Mon-8");
+        assertEquals(1, result.get("mon_21-22").get("B").size(), "User 'A' should have one entry for Mon-8");
     }
 
     @Test
@@ -29,7 +29,7 @@ class OccupantMapTest {
         Map<String, List<Integer>> userCounts = new HashMap<>();
         userCounts.put("A", Arrays.asList(1, 2, 3));
         userCounts.put("B", Arrays.asList(4, 5, 6));
-        mockMap.put("Mon_8", userCounts);
+        mockMap.put("mon_8-9", userCounts);
 
         // Inject mock data
         OccupantMap.occupancyMap = mockMap;
@@ -39,9 +39,9 @@ class OccupantMapTest {
 
         // Perform basic checks
         assertNotNull(thresholds, "Thresholds should not be null");
-        assertTrue(thresholds.containsKey("Mon_8"), "Thresholds should contain data for Mon-8");
-        assertTrue(thresholds.get("Mon_8").containsKey("A_upper"), "Thresholds should include upper threshold for user 'A'");
-        assertTrue(thresholds.get("Mon_8").containsKey("A_lower"), "Thresholds should include lower threshold for user 'A'");
+        assertTrue(thresholds.containsKey("mon_8-9"), "Thresholds should contain data for mon_8-9");
+        assertTrue(thresholds.get("mon_8-9").containsKey("A_upper"), "Thresholds should include upper threshold for user 'A'");
+        assertTrue(thresholds.get("mon_8-9").containsKey("A_lower"), "Thresholds should include lower threshold for user 'A'");
     }
 }
 
