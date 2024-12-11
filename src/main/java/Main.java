@@ -7,9 +7,9 @@ public class Main {
         // Fetch and populate the occupancyMap
         OccupantMap.occupantMap(); // Ensure this is called before calculateThresholds
 
+
         // Calculate thresholds
         Map<String, Map<String, Double>> thresholds = OccupantMap.calculateThresholds();
-
         // Analyze the data
         Map<String, Map<String, List<Integer>>> occupancyMap = OccupantMap.occupancyMap;
         for (String dayHour : occupancyMap.keySet()) {
@@ -30,7 +30,13 @@ public class Main {
                 }
             }
         }
+
+
     }
+
+
+
+
 }
 
 
