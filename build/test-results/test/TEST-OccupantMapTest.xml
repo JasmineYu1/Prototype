@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="OccupantMapTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-12-11T10:55:39" hostname="DELL_JAS" time="0.031">
+<testsuite name="OccupantMapTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-12-11T12:23:19" hostname="DELL_JAS" time="0.127">
   <properties/>
-  <testcase name="testCalculateThresholds()" classname="OccupantMapTest" time="0.031">
-    <failure message="java.lang.NullPointerException: Cannot invoke &quot;java.util.Map.keySet()&quot; because &quot;occupancyMap&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;java.util.Map.keySet()&quot; because &quot;occupancyMap&quot; is null
-	at OccupantMap.calculateThresholds(OccupantMap.java:66)
-	at OccupantMapTest.testCalculateThresholds(OccupantMapTest.java:38)
+  <testcase name="testOccupantMap()" classname="OccupantMapTest" time="0.127">
+    <failure message="java.lang.RuntimeException: org.postgresql.util.PSQLException: Connection to localhost:5433 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections." type="java.lang.RuntimeException">java.lang.RuntimeException: org.postgresql.util.PSQLException: Connection to localhost:5433 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at OccupantMap.occupantMap(OccupantMap.java:58)
+	at OccupantMapTest.testOccupantMap(OccupantMapTest.java:16)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
@@ -85,6 +85,28 @@
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+Caused by: org.postgresql.util.PSQLException: Connection to localhost:5433 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at app//org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:342)
+	at app//org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+	at app//org.postgresql.jdbc.PgConnection.&lt;init&gt;(PgConnection.java:263)
+	at app//org.postgresql.Driver.makeConnection(Driver.java:443)
+	at app//org.postgresql.Driver.connect(Driver.java:297)
+	at platform/java.sql@22.0.2/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at platform/java.sql@22.0.2/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at app//OccupantMap.occupantMap(OccupantMap.java:22)
+	... 81 more
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:752)
+	at org.postgresql.core.PGStream.createSocket(PGStream.java:243)
+	at org.postgresql.core.PGStream.&lt;init&gt;(PGStream.java:98)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:132)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258)
+	... 88 more
 </failure>
   </testcase>
   <system-out><![CDATA[]]></system-out>
