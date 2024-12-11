@@ -9,12 +9,32 @@ public class OccupantMap {
     public static String PASSWORD = "Lime8629!";//"YourPassword";
     public static String URL = "jdbc:postgresql://localhost:5432/residents";
    // public static String URL = "jdbc:postgresql://localhost:5432/ssh_database_schema.sql";
-    public static Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
+    public static Map <String,Map<String,List<Integer>>> occupancyMap;
     private static final double K1 = 0.5; // Scale factor for the upper threshold
     private static final double K2 = 0.5; // Scale factor for the lower threshold
     public static final int totalWeeks = 4; //hardcoding totalWeeks
 
-    public static Map<String, Map<String, List<Integer>>> occupantMap() {
+    public static void setOccupancyMap(Map<String, Map<String, List<Integer>>> occupancyMap) {
+        OccupantMap.occupancyMap = occupancyMap;
+    }
+
+    public static Map<String, Map<String, List<Integer>>> getOccupancyMap() {
+        return occupancyMap;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(occupantMap());
+
+        Map<String, Map<String, List<Integer>>> occmap = OccupantMap.getOccupancyMap();
+
+        // Iterate through the HashMap
+        for ( Map.Entry<String, Map<String, List<Integer>>> entry : occmap.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+        }
+
+    }
+
+    public static  Map<String, Map<String, List<Integer>>> occupantMap() {
         //Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
         String sql = "SELECT  *  FROM  resident_presence "; // this is where we will put our string for the sql , will change sepending on how database looks like
 
@@ -31,18 +51,24 @@ public class OccupantMap {
                 // inner layer - each users’ name will be used as keys to identify the presence counts for the particular individual from 8 a.m. to 22 p.m
 
                 String day,hour,date,username;
-                day = resultSet.getString("day");
-                hour = resultSet.getString("hour"); // this will be the hour for the outer layer
+                day = resultSet.getString("day"); // this is correct
+                hour = resultSet.getString("hour"); // this will be the hour for the outer layer // this is correct
                 date = day + "_" + hour;
-                username = resultSet.getString("user_id");
+                username = resultSet.getString("user_id"); // need
                 //present count as for the inner layer too
                 int count = resultSet.getInt("count");
-
-                occupancyMap.putIfAbsent(date, new HashMap<>()); // adds a key pair value to the map if the key is not there
-                Map<String, List<Integer>> presentMap = occupancyMap.get(date); // inner loop
-                presentMap.putIfAbsent(username,new ArrayList<>());
-                presentMap.get(username).add(count);
+                occupancyMap = new HashMap<>();
+                //occupancyMap.putIfAbsent(date, new HashMap<>()); // adds a key pair value to the map if the key is not there
+                Map<String, List<Integer>> presentMap = new HashMap<>(); // inner loop
+                //presentMap.putIfAbsent(username,new ArrayList<>());
+                presentMap.computeIfAbsent(username,k->new ArrayList<>()).add(count);
+               // presentMap.get(username).add(count);
+                occupancyMap.putIfAbsent(date,presentMap);
                 // closing connection after we have gotten what we have collected our data
+               /* for ( Map.Entry<String, Map<String, List<Integer>>> entry : occupancyMap.entrySet()) {
+                    System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+                }*/
+
 
 //                connection.close();
 //                statement.close();
