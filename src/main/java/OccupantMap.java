@@ -32,7 +32,7 @@ public class OccupantMap {
                 String day,hour,date,username;
                 day = resultSet.getString("day_id");
                 hour = resultSet.getString("hour_id"); // this will be the hour for the outer layer
-                date = day + "-" + hour;
+                date = day + "_" + hour;
                 username = resultSet.getString("user_id");
                 //present count as for the inner layer too
                 int count = resultSet.getInt("count");
