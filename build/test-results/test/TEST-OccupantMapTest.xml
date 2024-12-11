@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="OccupantMapTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-12-11T10:35:57" hostname="DELL_JAS" time="0.029">
+<testsuite name="OccupantMapTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-12-11T10:55:39" hostname="DELL_JAS" time="0.031">
   <properties/>
-  <testcase name="testCalculateThresholds()" classname="OccupantMapTest" time="0.029">
+  <testcase name="testCalculateThresholds()" classname="OccupantMapTest" time="0.031">
     <failure message="java.lang.NullPointerException: Cannot invoke &quot;java.util.Map.keySet()&quot; because &quot;occupancyMap&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;java.util.Map.keySet()&quot; because &quot;occupancyMap&quot; is null
 	at OccupantMap.calculateThresholds(OccupantMap.java:66)
 	at OccupantMapTest.testCalculateThresholds(OccupantMapTest.java:38)
