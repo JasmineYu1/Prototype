@@ -19,7 +19,7 @@ class OccupantMapTest {
         assertNotNull(result, "Result should not be null");
         assertTrue(result.containsKey("Mon_8"), "Map should contain data for Mon-8");
         assertTrue(result.get("Mon_8").containsKey("A"), "User 'A' should have data for Mon-8");
-        assertEquals(1, result.get("Mon-8").get("A").size(), "User 'A' should have one entry for Mon-8");
+        assertEquals(1, result.get("Mon_8").get("A").size(), "User 'A' should have one entry for Mon-8");
     }
 
     @Test
@@ -29,7 +29,7 @@ class OccupantMapTest {
         Map<String, List<Integer>> userCounts = new HashMap<>();
         userCounts.put("A", Arrays.asList(1, 2, 3));
         userCounts.put("B", Arrays.asList(4, 5, 6));
-        mockMap.put("Mon-8", userCounts);
+        mockMap.put("Mon_8", userCounts);
 
         // Inject mock data
         OccupantMap.occupancyMap = mockMap;
