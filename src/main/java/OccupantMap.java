@@ -1,78 +1,48 @@
 import java.sql.*;
 import java.util.*;
 
-
-
 public class OccupantMap {
 
-    public static String USERNAME = "postgres";//"YourUsername";
-    public static String PASSWORD = "Lime8629!";//"YourPassword";
+    public static String USERNAME = "postgres";
+    public static String PASSWORD = "Lime8629!";
     public static String URL = "jdbc:postgresql://localhost:5432/residents";
    // public static String URL = "jdbc:postgresql://localhost:5432/ssh_database_schema.sql";
     public static Map <String,Map<String,List<Integer>>> occupancyMap;
-    private static final double K1 = 0.5; // Scale factor for the upper threshold
-    private static final double K2 = 0.5; // Scale factor for the lower threshold
-    public static final int totalWeeks = 4; //hardcoding totalWeeks
+    private static final double K1 = 0.5;
+    private static final double K2 = 0.5;
+    public static final int totalWeeks = 4;
 
-    public static void setOccupancyMap(Map<String, Map<String, List<Integer>>> occupancyMap) {
-        OccupantMap.occupancyMap = occupancyMap;
-    }
 
-    public static Map<String, Map<String, List<Integer>>> getOccupancyMap() {
-        return occupancyMap;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(occupantMap());
-
-        Map<String, Map<String, List<Integer>>> occmap = OccupantMap.getOccupancyMap();
-
-        // Iterate through the HashMap
-        for ( Map.Entry<String, Map<String, List<Integer>>> entry : occmap.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-        }
-
-    }
 
     public static  Map<String, Map<String, List<Integer>>> occupantMap() {
         //Map <String,Map<String,List<Integer>>> occupancyMap = new HashMap<>();
-        String sql = "SELECT  *  FROM  resident_presence "; // this is where we will put our string for the sql , will change sepending on how database looks like
+        String sql = "SELECT  *  FROM  resident_presence ";
 
         try(
             Connection connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql) // add statement to get sql table and add on to here
+            ResultSet resultSet = statement.executeQuery(sql)
         )
 
         {
             while(resultSet.next()){
-                // nested hashmap gets data rom the sh  cloud - which will be our SQL so we just make a hashmap and then calculate it ans use calculations to get what they need to doo
-                //outer layer - using each string combination of day of week and hour in 24 hours system as the key
-                // inner layer - each users’ name will be used as keys to identify the presence counts for the particular individual from 8 a.m. to 22 p.m
+
 
                 String day,hour,date,username;
-                day = resultSet.getString("day"); // this is correct
-                hour = resultSet.getString("hour"); // this will be the hour for the outer layer // this is correct
+                day = resultSet.getString("day");
+                hour = resultSet.getString("hour");
                 date = day + "_" + hour;
-                username = resultSet.getString("user_id"); // need
-                //present count as for the inner layer too
+                username = resultSet.getString("user_id");
                 int count = resultSet.getInt("count");
                 occupancyMap = new HashMap<>();
-                //occupancyMap.putIfAbsent(date, new HashMap<>()); // adds a key pair value to the map if the key is not there
-                Map<String, List<Integer>> presentMap = new HashMap<>(); // inner loop
-                //presentMap.putIfAbsent(username,new ArrayList<>());
-                presentMap.computeIfAbsent(username,k->new ArrayList<>()).add(count);
-               // presentMap.get(username).add(count);
+                Map<String, List<Integer>> presentMap = new HashMap<>();
+                presentMap.putIfAbsent(username,new ArrayList<>());
+                presentMap.get(username).add(count);
                 occupancyMap.putIfAbsent(date,presentMap);
-                // closing connection after we have gotten what we have collected our data
-               /* for ( Map.Entry<String, Map<String, List<Integer>>> entry : occupancyMap.entrySet()) {
-                    System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-                }*/
 
 
-//                connection.close();
-//                statement.close();
-//                resultSet.close();
+                connection.close();
+
             }
             if (occupancyMap.isEmpty()) {
                 System.out.println("No data fetched from the database.");
@@ -86,10 +56,9 @@ public class OccupantMap {
     }
 
 
-    public static Map<String, Map<String, Double>> calculateThresholds() {
+   public static Map<String, Map<String, Double>> calculateThresholds() {
         Map<String, Map<String, Double>> thresholds = new HashMap<>();
-        occupancyHashmap occupancyHashmap = new occupancyHashmap();
-        Map <String,Map<String,List<Integer>>> occupancyMap = occupancyHashmap.occupancyMap;
+        Map <String,Map<String,List<Integer>>> occupancyMap = occupantMap();
 
         for (String dayHour : occupancyMap.keySet()) {
             Map<String, List<Integer>> presentMap = occupancyMap.get(dayHour);
@@ -119,7 +88,7 @@ public class OccupantMap {
             for (String username : presentMap.keySet()) {
 
                 List<Integer> counts = presentMap.get(username);
-
+                System.out.println(presentMap.get(username));
                 // Calculate A1 and S1 (values for the specific user)
                 //meanA1: sum of presence counts for A and B respectively, divided by total number of days
                 //stdDevA1: subtract meanA1 from each individual data points of user A and B only, square them and calculate sum, before dividing by totalWeeks * 7 * 14 and square rooting everything
@@ -147,5 +116,3 @@ public class OccupantMap {
 
 }
 
-// trying to get count from my hashmap
-//count values
