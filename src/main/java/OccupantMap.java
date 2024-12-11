@@ -7,7 +7,8 @@ public class OccupantMap {
 
     public static String USERNAME = "postgres";//"YourUsername";
     public static String PASSWORD = "Lime8629!";//"YourPassword";
-    public static String URL = "jdbc:postgresql://localhost:5433/ssh_database";
+    public static String URL = "jdbc:postgresql://localhost:5432/residents";
+   // public static String URL = "jdbc:postgresql://localhost:5432/ssh_database_schema.sql";
     public static Map <String,Map<String,List<Integer>>> occupancyMap;
     private static final double K1 = 0.5; // Scale factor for the upper threshold
     private static final double K2 = 0.5; // Scale factor for the lower threshold
@@ -19,7 +20,7 @@ public class OccupantMap {
 
         try(
             Connection connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
-            PreparedStatement statement = connection.prepareStatement(sql);
+            Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql) // add statement to get sql table and add on to here
         )
 
@@ -30,8 +31,8 @@ public class OccupantMap {
                 // inner layer - each users’ name will be used as keys to identify the presence counts for the particular individual from 8 a.m. to 22 p.m
 
                 String day,hour,date,username;
-                day = resultSet.getString("day_id");
-                hour = resultSet.getString("hour_id"); // this will be the hour for the outer layer
+                day = resultSet.getString("day");
+                hour = resultSet.getString("hour"); // this will be the hour for the outer layer
                 date = day + "_" + hour;
                 username = resultSet.getString("user_id");
                 //present count as for the inner layer too
@@ -48,7 +49,6 @@ public class OccupantMap {
                 resultSet.close();
 
 
-                return occupancyMap;
             }
 
         } catch (SQLException e ) {
