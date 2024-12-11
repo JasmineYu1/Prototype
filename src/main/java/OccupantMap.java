@@ -44,20 +44,19 @@ public class OccupantMap {
                 presentMap.get(username).add(count);
                 // closing connection after we have gotten what we have collected our data
 
-
-                connection.close();
-                statement.close();
-                resultSet.close();
-
-
-                return occupancyMap;
-
+//                connection.close();
+//                statement.close();
+//                resultSet.close();
+            }
+            if (occupancyMap.isEmpty()) {
+                System.out.println("No data fetched from the database.");
             }
 
         } catch (SQLException e ) {
             throw new RuntimeException(e);
         }
-        return occupantMap();
+
+        return occupancyMap;
     }
 
 
