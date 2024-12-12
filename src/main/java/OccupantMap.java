@@ -13,7 +13,6 @@ public class OccupantMap {
     public static final int totalWeeks = 4;
 
 
-
     public static  Map<String, Map<String, List<Integer>>> occupantMap() {
         String sql = "SELECT  *  FROM  resident_presence ";
 
@@ -56,15 +55,11 @@ public class OccupantMap {
 
    public static Map<String, Map<String, Double>> calculateThresholds() {
         Map<String, Map<String, Double>> thresholds = new HashMap<>();
-        //Map <String,Map<String,List<Integer>>> Map = occupantMap();
 
         for (String dayHour : occupancyMap.keySet()) {
             Map<String, List<Integer>> presentMap = occupancyMap.get(dayHour);
             Map<String, Double> userThresholds = new HashMap<>();
 
-            // Calculate A2 and S2 (values for all users combined)
-            // meanA2: sum of all presence counts for both users, divided by total number of days x 2
-            //stdDevA2: subtract meanA2 from each data points of all users, square them and sum it, before dividing by 2 * totalWeeks *7 * 14 and square rooting everything
             double totalSum = 0;
             int totalCount = 0;
             for (List<Integer> counts : presentMap.values()) {
@@ -82,14 +77,11 @@ public class OccupantMap {
             double stdDevA2 = Math.sqrt(varianceA2);
 
 
-            // Calculate thresholds for each user
+
             for (String username : presentMap.keySet()) {
 
                 List<Integer> counts = presentMap.get(username);
-                System.out.println(presentMap.get(username));
-                // Calculate A1 and S1 (values for the specific user)
-                //meanA1: sum of presence counts for A and B respectively, divided by total number of days
-                //stdDevA1: subtract meanA1 from each individual data points of user A and B only, square them and calculate sum, before dividing by totalWeeks * 7 * 14 and square rooting everything
+
                 double meanA1 = counts.stream().mapToDouble(Integer::doubleValue).sum() / (totalWeeks * 7 * 14);
                 double varianceA1 = counts.stream()
                         .mapToDouble(count -> Math.pow(count - meanA1, 2))
@@ -97,16 +89,14 @@ public class OccupantMap {
                 double stdDevA1 = Math.sqrt(varianceA1);
 
 
-                // Calculate thresholds
                 double upperThreshold = Math.min(1.0, meanA1 + (K1 * stdDevA1));
                 double lowerThreshold = Math.max(0.0, meanA2 - (K2 * stdDevA2));
 
-                // Store thresholds
                 userThresholds.put(username + "_upper", upperThreshold);
                 userThresholds.put(username + "_lower", lowerThreshold);
             }
 
-            thresholds.put(dayHour, userThresholds); //further checks
+            thresholds.put(dayHour, userThresholds);
         }
 
         return thresholds;
