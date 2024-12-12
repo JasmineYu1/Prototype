@@ -1,3 +1,7 @@
+
+/* code has been moved to class Occupant map as we decided it would be better to combine both the hashmap
+ and calculations method so the hashmap is easily accessible*/
+
 import java.util.*;
 import java.sql.*;
 
