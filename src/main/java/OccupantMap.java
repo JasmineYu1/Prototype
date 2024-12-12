@@ -5,8 +5,7 @@ public class OccupantMap {
 
     public static String USERNAME = "postgres";
     public static String PASSWORD = "Lime8629!";
-    public static String URL = "jdbc:postgresql://localhost:5432/residents";
-   // public static String URL = "jdbc:postgresql://localhost:5432/ssh_database_schema.sql";
+    public static String URL = "jdbc:postgresql://localhost:5432/ssh_database_schema.sql";
     public static Map <String,Map<String,List<Integer>>> occupancyMap;
     private static final double K1 = 0.5;
     private static final double K2 = 0.5;
